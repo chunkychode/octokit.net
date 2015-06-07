@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GistComment
+    [System.Serializable]  public class GistComment
     {
         public GistComment() { }
 

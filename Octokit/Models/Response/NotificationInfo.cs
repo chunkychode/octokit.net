@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NotificationInfo
+    [System.Serializable]  public class NotificationInfo
     {
         public NotificationInfo() { }
 

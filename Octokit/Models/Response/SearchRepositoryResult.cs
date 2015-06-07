@@ -5,7 +5,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class SearchRepositoryResult : SearchResult<Repository>
+    [System.Serializable]  public class SearchRepositoryResult : SearchResult<Repository>
     {
         public SearchRepositoryResult() { }
 

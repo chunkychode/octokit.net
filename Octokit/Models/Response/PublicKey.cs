@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PublicKey
+    [System.Serializable]  public class PublicKey
     {
         public PublicKey() { }
 

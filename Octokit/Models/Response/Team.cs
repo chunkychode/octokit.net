@@ -8,7 +8,7 @@ namespace Octokit
     /// organization teams
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Team
+    [System.Serializable]  public class Team
     {
         public Team() { }
 

@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class CompareResult
+    [System.Serializable]  public class CompareResult
     {
         public CompareResult() { }
 

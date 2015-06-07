@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class RepositoryIssueRequest : IssueRequest
+    [System.Serializable]  public class RepositoryIssueRequest : IssueRequest
     {
         /// <summary>
         /// Identifies a filter for the milestone. Use "*" for issues with any milestone.

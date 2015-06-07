@@ -1,6 +1,6 @@
 ﻿namespace Octokit
 {
-    public class BodyWrapper
+    [System.Serializable]  public class BodyWrapper
     {
         public BodyWrapper(string body)
         {

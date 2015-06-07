@@ -9,7 +9,7 @@ namespace Octokit
     /// A users email
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class EmailAddress
+    [System.Serializable]  public class EmailAddress
     {
         public EmailAddress() { }
 

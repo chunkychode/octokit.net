@@ -8,7 +8,7 @@ namespace Octokit
     /// Describes a new deployment status to create.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewDeploymentStatus
+    [System.Serializable]  public class NewDeploymentStatus
     {
         /// <summary>
         /// The state of the status.

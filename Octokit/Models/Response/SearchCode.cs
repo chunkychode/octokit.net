@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class SearchCode
+    [System.Serializable]  public class SearchCode
     {
         public SearchCode() { }
 

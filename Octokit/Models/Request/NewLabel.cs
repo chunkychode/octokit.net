@@ -9,7 +9,7 @@ namespace Octokit
     /// Describes a new label to create via the <see cref="IIssuesLabelsClient.Create(string,string,NewLabel)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewLabel
+    [System.Serializable]  public class NewLabel
     {
         private string _color;
 

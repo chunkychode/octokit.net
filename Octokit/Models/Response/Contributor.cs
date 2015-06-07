@@ -9,7 +9,7 @@ namespace Octokit
     /// Represents a contributor on GitHub.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Contributor
+    [System.Serializable]  public class Contributor
     {
         public Contributor() { }
 

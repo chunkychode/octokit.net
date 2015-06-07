@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Label
+    [System.Serializable]  public class Label
     {
         public Label() { }
 

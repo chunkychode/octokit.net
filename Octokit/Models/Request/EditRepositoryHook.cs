@@ -7,7 +7,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class EditRepositoryHook
+    [System.Serializable]  public class EditRepositoryHook
     {
         public EditRepositoryHook()
             : this(null)

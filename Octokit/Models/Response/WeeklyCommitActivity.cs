@@ -9,7 +9,7 @@ using Octokit.Helpers;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class WeeklyCommitActivity
+    [System.Serializable]  public class WeeklyCommitActivity
     {
         public WeeklyCommitActivity() { }
 

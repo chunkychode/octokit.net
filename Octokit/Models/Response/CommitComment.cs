@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]    
-    public class CommitComment
+    [System.Serializable]  public class CommitComment
     {
         public CommitComment() { }
 

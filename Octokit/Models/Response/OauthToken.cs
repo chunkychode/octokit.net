@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class OauthToken
+    [System.Serializable]  public class OauthToken
     {
         public OauthToken() { }
 

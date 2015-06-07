@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Branch
+    [System.Serializable]  public class Branch
     {
         public Branch() { }
 

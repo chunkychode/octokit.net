@@ -6,7 +6,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GitReference
+    [System.Serializable]  public class GitReference
     {
         public GitReference() { }
 

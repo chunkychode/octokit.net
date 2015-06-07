@@ -8,7 +8,7 @@ namespace Octokit
     /// Describes a new pull request to create via the <see cref="IPullRequestsClient.Create(string,string,NewPullRequest)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewPullRequest
+    [System.Serializable]  public class NewPullRequest
     {
         public NewPullRequest(string title, string head, string baseRef)
         {

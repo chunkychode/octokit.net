@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GistFileUpdate
+    [System.Serializable]  public class GistFileUpdate
     {
         public string NewFileName { get; set; }
 

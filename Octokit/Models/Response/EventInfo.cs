@@ -7,7 +7,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class EventInfo
+    [System.Serializable]  public class EventInfo
     {
         public EventInfo() { }
 

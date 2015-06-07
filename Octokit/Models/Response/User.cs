@@ -8,7 +8,7 @@ namespace Octokit
     /// Represents a user on GitHub.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class User : Account
+    [System.Serializable]  public class User : Account
     {
         public User() { }
 

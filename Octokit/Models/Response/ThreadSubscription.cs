@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class ThreadSubscription
+    [System.Serializable]  public class ThreadSubscription
     {
         public ThreadSubscription() { }
 

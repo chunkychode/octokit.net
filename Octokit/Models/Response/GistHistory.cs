@@ -8,7 +8,7 @@ namespace Octokit
     /// A historical version of a <see cref="Gist"/>
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GistHistory
+    [System.Serializable]  public class GistHistory
     {
         public GistHistory() { }
 

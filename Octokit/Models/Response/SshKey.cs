@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class SshKey
+    [System.Serializable]  public class SshKey
     {
         public SshKey()
         {

@@ -8,7 +8,7 @@ namespace Octokit
     /// Used by <see cref="GistHistory"/> to indicate the level of change.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GistChangeStatus
+    [System.Serializable]  public class GistChangeStatus
     {
         public GistChangeStatus() { }
 

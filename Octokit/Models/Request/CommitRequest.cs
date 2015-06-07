@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class CommitRequest : RequestParameters
+    [System.Serializable]  public class CommitRequest : RequestParameters
     {
         public CommitRequest()
         {

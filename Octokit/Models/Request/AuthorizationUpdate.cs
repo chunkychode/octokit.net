@@ -9,7 +9,7 @@ namespace Octokit
     /// Used to create a new authorization.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class AuthorizationUpdate
+    [System.Serializable]  public class AuthorizationUpdate
     {
         /// <summary>
         /// Replaces the authorization scopes with this list.

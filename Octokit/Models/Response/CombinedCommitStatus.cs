@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class CombinedCommitStatus
+    [System.Serializable]  public class CombinedCommitStatus
     {
         public CombinedCommitStatus() { }
 

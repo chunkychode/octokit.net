@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewBlob
+    [System.Serializable]  public class NewBlob
     {
         /// <summary>
         /// The content of the blob.

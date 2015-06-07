@@ -6,7 +6,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewReference
+    [System.Serializable]  public class NewReference
     {
         const string _refsPrefix = "refs";
 

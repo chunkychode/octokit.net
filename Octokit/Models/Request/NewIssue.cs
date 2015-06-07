@@ -9,7 +9,7 @@ namespace Octokit
     /// Describes a new issue to create via the <see cref="IIssuesClient.Create(string,string,NewIssue)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewIssue
+    [System.Serializable]  public class NewIssue
     {
         public NewIssue(string title)
         {

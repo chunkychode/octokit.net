@@ -8,7 +8,7 @@ namespace Octokit
     /// </summary>
     /// <remarks>https://developer.github.com/v3/repos/contents/</remarks>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class RepositoryContentChangeSet
+    [System.Serializable]  public class RepositoryContentChangeSet
     {
         public RepositoryContentChangeSet() { }
 

@@ -9,7 +9,7 @@ namespace Octokit
     /// Describes a new deployment status to create.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewDeployment
+    [System.Serializable]  public class NewDeployment
     {
         /// <summary>
         /// The ref to deploy. This can be a branch, tag, or sha.

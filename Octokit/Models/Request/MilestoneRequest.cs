@@ -6,7 +6,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class MilestoneRequest : RequestParameters
+    [System.Serializable]  public class MilestoneRequest : RequestParameters
     {
         public MilestoneRequest()
         {

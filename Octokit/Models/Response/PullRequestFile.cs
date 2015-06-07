@@ -10,7 +10,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PullRequestFile
+    [System.Serializable]  public class PullRequestFile
     {
         public PullRequestFile() { }
 

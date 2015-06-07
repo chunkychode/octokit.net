@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class IssueCommentPayload : ActivityPayload
+    [System.Serializable]  public class IssueCommentPayload : ActivityPayload
     {
         // should always be "created" according to github api docs
         public string Action { get; protected set; }

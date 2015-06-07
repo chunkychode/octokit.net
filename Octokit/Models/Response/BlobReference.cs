@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class BlobReference
+    [System.Serializable]  public class BlobReference
     {
         public BlobReference() { }
 

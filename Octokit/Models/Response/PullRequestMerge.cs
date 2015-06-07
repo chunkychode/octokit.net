@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PullRequestMerge
+    [System.Serializable]  public class PullRequestMerge
     {
         public PullRequestMerge() { }
 

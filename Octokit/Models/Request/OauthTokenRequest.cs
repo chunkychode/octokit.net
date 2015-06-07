@@ -6,7 +6,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class OauthTokenRequest : RequestParameters
+    [System.Serializable]  public class OauthTokenRequest : RequestParameters
     {
         /// <summary>
         /// Creates an instance of the OAuth login request with the required parameter.

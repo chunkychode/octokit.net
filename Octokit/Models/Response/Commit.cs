@@ -6,7 +6,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Commit : GitReference
+    [System.Serializable]  public class Commit : GitReference
     {
         public Commit() { }
 

@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class UpdateTeam
+    [System.Serializable]  public class UpdateTeam
     {
         public UpdateTeam(string team)
         {

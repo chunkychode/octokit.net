@@ -9,7 +9,7 @@ namespace Octokit
     /// Look at the Type property to figure out which one it is.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class RepositoryContent : RepositoryContentInfo
+    [System.Serializable]  public class RepositoryContent : RepositoryContentInfo
     {
         public RepositoryContent() { }
 

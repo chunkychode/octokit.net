@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class IssueEvent
+    [System.Serializable]  public class IssueEvent
     {
         public IssueEvent() { }
 

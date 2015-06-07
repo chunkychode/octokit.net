@@ -8,7 +8,7 @@ namespace Octokit
     /// Information about an author or committer.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Signature
+    [System.Serializable]  public class Signature
     {
         /// <summary>
         /// Creates an instance of Signature with the required values.

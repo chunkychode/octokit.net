@@ -6,7 +6,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Merge : GitReference
+    [System.Serializable]  public class Merge : GitReference
     {
         public Merge() { }
 

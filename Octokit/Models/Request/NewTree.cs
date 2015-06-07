@@ -8,7 +8,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class NewTree
+    [System.Serializable]  public class NewTree
     {
         public NewTree()
         {

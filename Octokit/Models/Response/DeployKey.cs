@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class DeployKey
+    [System.Serializable]  public class DeployKey
     {
         public DeployKey() { }
 

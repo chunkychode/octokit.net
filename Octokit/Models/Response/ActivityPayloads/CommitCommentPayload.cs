@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class CommitCommentPayload : ActivityPayload
+    [System.Serializable]  public class CommitCommentPayload : ActivityPayload
     {
         public CommitComment Comment { get; protected set; }
     }

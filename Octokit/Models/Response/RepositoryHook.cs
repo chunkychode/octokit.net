@@ -7,7 +7,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class RepositoryHook
+    [System.Serializable]  public class RepositoryHook
     {
         public RepositoryHook() { }
 

@@ -7,7 +7,7 @@ namespace Octokit
     /// An enhanced git commit containing links to additional resources
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class GitHubCommit : GitReference
+    [System.Serializable]  public class GitHubCommit : GitReference
     {
         public GitHubCommit() { }
 

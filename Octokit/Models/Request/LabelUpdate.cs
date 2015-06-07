@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class LabelUpdate
+    [System.Serializable]  public class LabelUpdate
     {
         private string _color;
 

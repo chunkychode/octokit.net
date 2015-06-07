@@ -10,7 +10,7 @@ namespace Octokit
     /// An entry in the activity event stream
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Activity
+    [System.Serializable]  public class Activity
     {
         public Activity() { }
 

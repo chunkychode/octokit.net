@@ -7,7 +7,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class IssueUpdate
+    [System.Serializable]  public class IssueUpdate
     {
         /// <summary>
         /// Title of the issue (required)

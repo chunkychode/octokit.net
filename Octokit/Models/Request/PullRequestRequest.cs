@@ -6,7 +6,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PullRequestRequest : RequestParameters
+    [System.Serializable]  public class PullRequestRequest : RequestParameters
     {
         public PullRequestRequest()
         {

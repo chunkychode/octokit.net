@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PushEventPayload : ActivityPayload
+    [System.Serializable]  public class PushEventPayload : ActivityPayload
     {
         public string Head { get; protected set; }
         public string Ref { get; protected set; }

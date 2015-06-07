@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class RepositoryTag
+    [System.Serializable]  public class RepositoryTag
     {
         public RepositoryTag() { }
 

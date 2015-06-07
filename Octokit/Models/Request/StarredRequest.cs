@@ -6,7 +6,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class StarredRequest : RequestParameters
+    [System.Serializable]  public class StarredRequest : RequestParameters
     {
         public StarredRequest()
         {

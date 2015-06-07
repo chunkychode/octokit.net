@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PullRequestReviewComment
+    [System.Serializable]  public class PullRequestReviewComment
     {
         public PullRequestReviewComment() { }
 

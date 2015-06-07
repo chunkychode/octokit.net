@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class MilestoneUpdate
+    [System.Serializable]  public class MilestoneUpdate
     {
         /// <summary>
         /// Title of the milestone (required)

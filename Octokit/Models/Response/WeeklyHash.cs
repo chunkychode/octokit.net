@@ -7,7 +7,7 @@ using Octokit.Helpers;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class WeeklyHash
+    [System.Serializable]  public class WeeklyHash
     {
         public WeeklyHash() { }
 

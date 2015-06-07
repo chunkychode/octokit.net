@@ -9,7 +9,7 @@ namespace Octokit
     /// Used to merge a pull request.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class MergePullRequest
+    [System.Serializable]  public class MergePullRequest
     {
         /// <summary>
         /// The message that will be used for the merge commit (optional)

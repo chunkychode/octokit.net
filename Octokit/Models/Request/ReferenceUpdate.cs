@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class ReferenceUpdate
+    [System.Serializable]  public class ReferenceUpdate
     {
         public ReferenceUpdate(string sha) : this(sha, false)
         {

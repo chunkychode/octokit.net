@@ -9,7 +9,7 @@ namespace Octokit
     /// Use string.empty if you want to clear clear a value.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class UserUpdate
+    [System.Serializable]  public class UserUpdate
     {
         /// <summary>
         /// This user's bio.

@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Emoji
+    [System.Serializable]  public class Emoji
     {
         public Emoji() { }
 

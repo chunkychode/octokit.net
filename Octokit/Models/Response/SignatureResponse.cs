@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class SignatureResponse
+    [System.Serializable]  public class SignatureResponse
     {
         public SignatureResponse() { }
 

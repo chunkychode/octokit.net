@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PunchCardPoint
+    [System.Serializable]  public class PunchCardPoint
     {
         public PunchCardPoint() { }
 

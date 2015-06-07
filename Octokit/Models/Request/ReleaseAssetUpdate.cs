@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class ReleaseAssetUpdate
+    [System.Serializable]  public class ReleaseAssetUpdate
     {
         public ReleaseAssetUpdate(string name)
         {

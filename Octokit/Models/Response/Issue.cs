@@ -8,7 +8,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Issue
+    [System.Serializable]  public class Issue
     {
         public Issue() { }
 

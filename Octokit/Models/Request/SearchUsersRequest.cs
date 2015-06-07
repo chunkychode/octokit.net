@@ -12,7 +12,7 @@ namespace Octokit
     /// Searching Users
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class SearchUsersRequest : BaseSearchRequest
+    [System.Serializable]  public class SearchUsersRequest : BaseSearchRequest
     {
         public SearchUsersRequest(string term) : base(term)
         {

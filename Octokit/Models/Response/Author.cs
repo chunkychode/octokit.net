@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Author
+    [System.Serializable]  public class Author
     {
         public Author() { }
 

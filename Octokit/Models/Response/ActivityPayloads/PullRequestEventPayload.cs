@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class PullRequestEventPayload : ActivityPayload
+    [System.Serializable]  public class PullRequestEventPayload : ActivityPayload
     {
         public string Action { get; protected set; }
         public int Number { get; protected set; }

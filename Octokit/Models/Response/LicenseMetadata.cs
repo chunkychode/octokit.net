@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class LicenseMetadata
+    [System.Serializable]  public class LicenseMetadata
     {
         public LicenseMetadata(string key, string name, Uri url)
         {

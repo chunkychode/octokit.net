@@ -43,7 +43,7 @@ namespace Octokit
     /// Represents the request to delete a file in a repository.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class DeleteFileRequest : ContentRequest
+    [System.Serializable]  public class DeleteFileRequest : ContentRequest
     {
         public DeleteFileRequest(string message, string sha) : base(message)
         {
@@ -68,7 +68,7 @@ namespace Octokit
     /// </summary>
     /// <remarks>https://developer.github.com/v3/repos/contents/#create-a-file</remarks>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class CreateFileRequest : ContentRequest
+    [System.Serializable]  public class CreateFileRequest : ContentRequest
     {
         /// <summary>
         /// Creates an instance of a <see cref="CreateFileRequest" />.
@@ -101,7 +101,7 @@ namespace Octokit
     /// Represents the parameters to update a file in a repository.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class UpdateFileRequest : CreateFileRequest
+    [System.Serializable]  public class UpdateFileRequest : CreateFileRequest
     {
         public UpdateFileRequest(string message, string content, string sha)
             : base(message, content)
