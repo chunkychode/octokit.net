@@ -4,6 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class TagObject : GitReference
     {
         public TagObject() { }

@@ -8,6 +8,9 @@ namespace Octokit
     /// An enhanced git commit containing links to additional resources
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class GitHubCommitStats
     {
         public GitHubCommitStats() { }

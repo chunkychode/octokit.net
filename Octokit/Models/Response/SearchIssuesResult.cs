@@ -5,6 +5,9 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class SearchIssuesResult : SearchResult<Issue>
     {
         public SearchIssuesResult() { }

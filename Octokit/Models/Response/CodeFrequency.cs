@@ -11,6 +11,9 @@ namespace Octokit
     /// Represents the summary of lines added and deleted
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class CodeFrequency
     {
         public CodeFrequency() { }

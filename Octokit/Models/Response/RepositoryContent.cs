@@ -9,6 +9,9 @@ namespace Octokit
     /// Look at the Type property to figure out which one it is.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class RepositoryContent : RepositoryContentInfo
     {
         public RepositoryContent() { }

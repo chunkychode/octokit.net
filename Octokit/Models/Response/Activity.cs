@@ -10,6 +10,9 @@ namespace Octokit
     /// An entry in the activity event stream
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class Activity
     {
         public Activity() { }

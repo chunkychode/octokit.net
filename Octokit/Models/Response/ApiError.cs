@@ -7,7 +7,7 @@ namespace Octokit
     /// Error payload from the API reposnse
     /// </summary>
 #if !NETFX_CORE
-    [Serializable]
+    [System.Serializable]
 #endif
     public class ApiError
     {

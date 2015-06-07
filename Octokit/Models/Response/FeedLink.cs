@@ -8,6 +8,9 @@ namespace Octokit
     /// Collection of feeds including both url and type
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class FeedLinks
     {
         public FeedLinks() { }

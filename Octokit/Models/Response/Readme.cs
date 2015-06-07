@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class Readme
     {
         readonly Lazy<Task<string>> htmlContent;

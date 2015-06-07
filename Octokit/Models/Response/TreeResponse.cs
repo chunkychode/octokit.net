@@ -7,6 +7,10 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class TreeResponse
     {
         public TreeResponse() { }

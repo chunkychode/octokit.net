@@ -8,6 +8,9 @@ namespace Octokit
     /// organization teams
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class Team
     {
         public Team() { }

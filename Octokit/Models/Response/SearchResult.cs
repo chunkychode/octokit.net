@@ -5,6 +5,9 @@ using System.Globalization;
 
 namespace Octokit.Internal
 {
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public abstract class SearchResult<T>
     {
         protected SearchResult() { }

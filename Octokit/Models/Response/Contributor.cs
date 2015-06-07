@@ -9,6 +9,9 @@ namespace Octokit
     /// Represents a contributor on GitHub.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class Contributor
     {
         public Contributor() { }

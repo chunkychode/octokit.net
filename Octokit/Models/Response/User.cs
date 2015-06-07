@@ -8,6 +8,9 @@ namespace Octokit
     /// Represents a user on GitHub.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class User : Account
     {
         public User() { }

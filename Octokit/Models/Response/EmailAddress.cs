@@ -9,6 +9,9 @@ namespace Octokit
     /// A users email
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class EmailAddress
     {
         public EmailAddress() { }

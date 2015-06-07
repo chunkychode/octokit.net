@@ -9,6 +9,9 @@ namespace Octokit
     /// The affected files in a <see cref="GitHubCommit"/>.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class GitHubCommitFile
     {
         public GitHubCommitFile() { }

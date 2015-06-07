@@ -3,7 +3,7 @@ using System;
 namespace Octokit
 {
 #if !NETFX_CORE
-    [Serializable]
+    [System.Serializable]
 #endif
     public class ApiErrorDetail
     {
