@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewTreeItem
+    public class NewTreeItem
     {
         /// <summary>
         /// The file referenced in the tree.

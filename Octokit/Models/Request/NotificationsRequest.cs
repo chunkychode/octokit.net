@@ -8,7 +8,7 @@ namespace Octokit
     /// Specifies the parameters to filter notifications by
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NotificationsRequest : RequestParameters
+    public class NotificationsRequest : RequestParameters
     {
         /// <summary>
         /// If true, show notifications marked as read. Default: false

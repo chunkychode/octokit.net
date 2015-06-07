@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewRepositoryFork
+    public class NewRepositoryFork
     {
         public string Organization { get; set; }
 

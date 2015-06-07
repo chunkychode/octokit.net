@@ -6,7 +6,7 @@ using System.IO;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class ReleaseAssetUpload
+    public class ReleaseAssetUpload
     {
         public ReleaseAssetUpload() { }
 

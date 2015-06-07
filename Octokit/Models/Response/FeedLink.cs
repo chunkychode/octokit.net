@@ -8,7 +8,7 @@ namespace Octokit
     /// Collection of feeds including both url and type
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class FeedLinks
+    public class FeedLinks
     {
         public FeedLinks() { }
 
@@ -62,7 +62,7 @@ namespace Octokit
     /// Feed information including feed url and feed type
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class FeedLink
+    public class FeedLink
     {
         public FeedLink() { }
 

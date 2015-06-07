@@ -3,7 +3,7 @@ namespace Octokit
     /// <summary>
     /// Represents the data and name parsed from the Ssh key.
     /// </summary>
-    [System.Serializable]  public class SshKeyInfo
+    public class SshKeyInfo
     {
         public SshKeyInfo(string data, string name)
         {

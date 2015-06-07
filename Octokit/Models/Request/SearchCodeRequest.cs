@@ -14,7 +14,7 @@ namespace Octokit
     /// http://developer.github.com/v3/search/#search-code
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class SearchCodeRequest : BaseSearchRequest
+    public class SearchCodeRequest : BaseSearchRequest
     {
         public SearchCodeRequest(string term) : base(term) { }
 

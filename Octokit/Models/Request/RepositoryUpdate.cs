@@ -11,7 +11,7 @@ namespace Octokit
     /// Use string.empty if you want to clear a value.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class RepositoryUpdate
+    public class RepositoryUpdate
     {
         /// <summary>
         /// Required. Gets or sets the repository name.

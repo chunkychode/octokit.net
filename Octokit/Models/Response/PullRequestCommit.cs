@@ -8,7 +8,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class PullRequestCommit
+    public class PullRequestCommit
     {
         public PullRequestCommit() { }
 

@@ -11,7 +11,7 @@ namespace Octokit
     /// Represents the summary of lines added and deleted
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class CodeFrequency
+    public class CodeFrequency
     {
         public CodeFrequency() { }
 

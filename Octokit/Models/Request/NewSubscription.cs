@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewSubscription
+    public class NewSubscription
     {
         /// <summary>
         /// Determines if notifications should be received from this repository.

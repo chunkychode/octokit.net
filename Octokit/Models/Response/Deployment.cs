@@ -9,7 +9,7 @@ namespace Octokit
     [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces",
         Justification="People can use fully qualified names if they want to use both.")]
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Deployment
+    public class Deployment
     {
         public Deployment() { }
 

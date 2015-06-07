@@ -7,7 +7,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class IssueRequest : RequestParameters
+    public class IssueRequest : RequestParameters
     {
         public IssueRequest()
         {

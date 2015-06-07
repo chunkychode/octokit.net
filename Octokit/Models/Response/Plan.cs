@@ -8,7 +8,7 @@ namespace Octokit
     /// A plan (either paid or free) for a particular user
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Plan
+    public class Plan
     {
         public Plan() { }
 

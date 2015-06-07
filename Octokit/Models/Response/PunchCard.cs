@@ -8,7 +8,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class PunchCard
+    public class PunchCard
     {
         public PunchCard(IEnumerable<IList<int>> punchCardData)
         {

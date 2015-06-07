@@ -9,7 +9,7 @@ namespace Octokit
     /// Represents an oauth access given to a particular application.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Authorization
+    public class Authorization
     {
         // TODO: I'd love to not need this
         public Authorization() { }

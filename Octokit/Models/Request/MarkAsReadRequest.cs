@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class MarkAsReadRequest : RequestParameters
+    public class MarkAsReadRequest : RequestParameters
     {
         public MarkAsReadRequest()
         {

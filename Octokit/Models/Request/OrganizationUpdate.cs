@@ -9,7 +9,7 @@ namespace Octokit
     /// Use string.empty to clear a value.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class OrganizationUpdate
+    public class OrganizationUpdate
     {
         /// <summary>
         /// Billing email address. This address is not publicized.

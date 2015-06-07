@@ -8,7 +8,7 @@ namespace Octokit
     /// Represents an oauth application.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Application
+    public class Application
     {
         public Application() { }
 

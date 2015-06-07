@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class PullRequestReviewCommentEdit : RequestParameters
+    public class PullRequestReviewCommentEdit : RequestParameters
     {
         /// <summary>
         /// Creates an edit to a comment

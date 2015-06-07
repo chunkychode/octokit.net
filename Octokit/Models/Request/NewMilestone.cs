@@ -8,7 +8,7 @@ namespace Octokit
     /// Describes a new milestone to create via the <see cref="IMilestonesClient.Create(string,string,NewMilestone)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewMilestone
+    public class NewMilestone
     {
         public NewMilestone(string title)
         {

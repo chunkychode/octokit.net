@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class GitIgnoreTemplate
+    public class GitIgnoreTemplate
     {
         public GitIgnoreTemplate(string name, string source)
         {

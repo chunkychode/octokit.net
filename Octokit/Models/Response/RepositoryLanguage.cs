@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class RepositoryLanguage
+    public class RepositoryLanguage
     {
         public RepositoryLanguage(string name, long numberOfBytes)
         {

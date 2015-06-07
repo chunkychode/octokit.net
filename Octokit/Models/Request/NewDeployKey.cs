@@ -8,7 +8,7 @@ namespace Octokit
     /// Describes a new deployment key to create.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewDeployKey
+    public class NewDeployKey
     {
         public string Title { get; set; }
 

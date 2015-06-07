@@ -7,7 +7,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class TreeResponse
+    public class TreeResponse
     {
         public TreeResponse() { }
 

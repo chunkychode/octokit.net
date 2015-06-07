@@ -7,7 +7,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewRepositoryHook
+    public class NewRepositoryHook
     {
         public NewRepositoryHook(string name, Dictionary<string, string> config)
         {

@@ -10,7 +10,7 @@ namespace Octokit
     /// Represents lines added and deleted at a given point in time
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class AdditionsAndDeletions
+    public class AdditionsAndDeletions
     {
         public AdditionsAndDeletions() { }
 

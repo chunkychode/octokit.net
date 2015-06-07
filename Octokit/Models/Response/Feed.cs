@@ -11,7 +11,7 @@ namespace Octokit
     /// Lists all the feeds available to the authenticating user:
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Feed
+    public class Feed
     {
         public Feed() { }
 

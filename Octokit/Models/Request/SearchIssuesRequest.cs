@@ -13,7 +13,7 @@ namespace Octokit
     /// Searching Issues
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class SearchIssuesRequest : BaseSearchRequest
+    public class SearchIssuesRequest : BaseSearchRequest
     {
         public SearchIssuesRequest(string term) : base(term) { }
 

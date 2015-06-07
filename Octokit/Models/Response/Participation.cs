@@ -11,7 +11,7 @@ namespace Octokit
     /// Returns the total commit counts for the owner and total commit counts in total in the last 52 weeks
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Participation
+    public class Participation
     {
         public Participation() { }
 

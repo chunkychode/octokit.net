@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class IssueEventPayload : ActivityPayload
+    public class IssueEventPayload : ActivityPayload
     {
         public string Action { get; protected set; }
         public Issue Issue { get; protected set; }

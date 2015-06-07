@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class ActivityPayload
+    public class ActivityPayload
     {
         public Repository Repository { get; protected set; }
         public User Sender { get; protected set; }

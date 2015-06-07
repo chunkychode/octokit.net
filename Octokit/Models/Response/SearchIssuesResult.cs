@@ -5,7 +5,7 @@ using Octokit.Internal;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class SearchIssuesResult : SearchResult<Issue>
+    public class SearchIssuesResult : SearchResult<Issue>
     {
         public SearchIssuesResult() { }
 

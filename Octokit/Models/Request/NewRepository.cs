@@ -9,7 +9,7 @@ namespace Octokit
     /// Describes a new repository to create via the <see cref="IRepositoriesClient.Create(NewRepository)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewRepository
+    public class NewRepository
     {
         /// <summary>
         /// Creates an object that describes the repository to create on GitHub.

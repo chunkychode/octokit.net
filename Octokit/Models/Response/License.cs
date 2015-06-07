@@ -8,7 +8,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class License : LicenseMetadata
+    public class License : LicenseMetadata
     {
         public License(
             string key,

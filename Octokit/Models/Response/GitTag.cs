@@ -3,7 +3,7 @@
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class GitTag : GitReference
+    public class GitTag : GitReference
     {
         public GitTag() { }
 

@@ -8,7 +8,7 @@ namespace Octokit
     /// Describes a new commit comment to create via the <see cref="IRepositoryCommentsClient.Create(string,string,string,NewCommitComment)"/> method.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewCommitComment
+    public class NewCommitComment
     {
         public NewCommitComment(string body)
         {

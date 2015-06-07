@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewMerge
+    public class NewMerge
     {
         /// <summary>
         /// Create a new commit which has multiple parents (i.e. a merge commit)

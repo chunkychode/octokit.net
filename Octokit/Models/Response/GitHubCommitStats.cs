@@ -8,7 +8,7 @@ namespace Octokit
     /// An enhanced git commit containing links to additional resources
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class GitHubCommitStats
+    public class GitHubCommitStats
     {
         public GitHubCommitStats() { }
 

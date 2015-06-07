@@ -8,7 +8,7 @@ namespace Octokit
     /// Represents updatable fields for a users subscription to a given thread
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewThreadSubscription
+    public class NewThreadSubscription
     {
         /// <summary>
         /// Determines if notifications should be received from this thread

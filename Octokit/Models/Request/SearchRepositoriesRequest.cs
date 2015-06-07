@@ -13,7 +13,7 @@ namespace Octokit
     /// http://developer.github.com/v3/search/#search-repositories
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class SearchRepositoriesRequest : BaseSearchRequest
+    public class SearchRepositoriesRequest : BaseSearchRequest
     {
         public SearchRepositoriesRequest(string term)
             : base(term)
@@ -177,7 +177,7 @@ namespace Octokit
     /// Helper class in generating the range values for a qualifer e.g. In or Size qualifiers
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class Range
+    public class Range
     {
         private string query = string.Empty;
 
@@ -269,7 +269,7 @@ namespace Octokit
     /// https://help.github.com/articles/searching-repositories#created-and-last-updated
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class DateRange
+    public class DateRange
     {
         private readonly string query = string.Empty;
 

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class NewCommit
+    public class NewCommit
     {
         /// <summary>
         /// Create a new commit which has multiple parents (i.e. a merge commit)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class PublicRepositoryRequest : RequestParameters
+    public class PublicRepositoryRequest : RequestParameters
     {
         public PublicRepositoryRequest(int since)
         {

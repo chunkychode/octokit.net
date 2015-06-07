@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    [System.Serializable]  public class PullRequestUpdate
+    public class PullRequestUpdate
     {
         /// <summary>
         /// Title of the pull request (required)
