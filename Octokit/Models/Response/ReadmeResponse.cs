@@ -1,5 +1,8 @@
 namespace Octokit
 {
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     internal class ReadmeResponse
     {
         public ReadmeResponse() { }

@@ -9,6 +9,9 @@ namespace Octokit
     /// Information about a file in a repository. It does not include the contents of the file.
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class RepositoryContentInfo
     {
         public RepositoryContentInfo() { }

@@ -6,6 +6,9 @@ using System.Globalization;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [Serializable]
+#endif
     public class Author
     {
         public Author() { }

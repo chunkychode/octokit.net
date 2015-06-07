@@ -8,6 +8,9 @@ using System.Linq;
 namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class PunchCard
     {
         public PunchCard(IEnumerable<IList<int>> punchCardData)

@@ -8,6 +8,9 @@ namespace Octokit
     /// </summary>
     /// <remarks>https://developer.github.com/v3/repos/contents/</remarks>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class RepositoryContentChangeSet
     {
         public RepositoryContentChangeSet() { }

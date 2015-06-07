@@ -5,6 +5,10 @@ namespace Octokit
     /// <summary>
     /// Base class for a GitHub account, most often either a <see cref="User"/> or <see cref="Organization"/>.
     /// </summary>
+    /// 
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public abstract class Account
     {
         protected Account() { }

@@ -8,6 +8,9 @@ namespace Octokit
     /// A plan (either paid or free) for a particular user
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
+#if !NETFX_CORE
+    [System.Serializable]
+#endif
     public class Plan
     {
         public Plan() { }
