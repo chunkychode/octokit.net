@@ -23,6 +23,8 @@ namespace Octokit
         readonly Authenticator _authenticator;
         readonly JsonHttpPipeline _jsonPipeline;
         readonly IHttpClient _httpClient;
+        RateLimit _limit;
+        public RateLimit RateLimit { get { return _limit; } }
 
         /// <summary>
         /// Creates a new connection instance used to make requests of the GitHub API.
@@ -509,6 +511,7 @@ namespace Octokit
         {
             _jsonPipeline.SerializeRequest(request);
             var response = await RunRequest(request, cancellationToken).ConfigureAwait(false);
+            _limit = response.ApiInfo.RateLimit;
             return _jsonPipeline.DeserializeResponse<T>(response);
         }
 

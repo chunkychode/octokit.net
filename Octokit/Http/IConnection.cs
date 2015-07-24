@@ -12,6 +12,7 @@ namespace Octokit
     /// </summary>
     public interface IConnection
     {
+        RateLimit RateLimit { get; }
         /// <summary>
         /// Performs an asynchronous HTTP GET request that expects a <seealso cref="IResponse"/> containing HTML.
         /// </summary>

@@ -31,5 +31,6 @@ namespace Octokit.Internal
             var response = await _nextPageFunc(nextPageUrl).ConfigureAwait(false);
             return new ReadOnlyPagedCollection<T>(response, _nextPageFunc);
         }
+        public RateLimit RateLimit { get { return _info.RateLimit; } }
     }
 }
