@@ -1,5 +1,7 @@
 # Octokit - GitHub API Client Library for .NET [![Build Status](https://ci.appveyor.com/api/projects/status/github/octokit/octokit.net?branch=master)](https://ci.appveyor.com/project/Haacked15676/octokit-net)
 
+![logo](octokit-dotnet_2.png)
+
 Octokit is a client library targeting .NET 4.5 and above that provides an easy
 way to interact with the [GitHub API](http://developer.github.com/v3/).
 
@@ -27,18 +29,27 @@ Octokit is available on NuGet.
 ```
 Install-Package Octokit
 ```
+or an IObservable based GitHub API client library for .NET using Reactive Extensions
+
+```
+Install-Package Octokit.Reactive
+```
 
 In Xamarin Studio you can find this option under the project's context menu: **Add | Add Packages...***.
+
+## Documentation
+
+Please see https://github.com/octokit/octokit.net/blob/master/docs/index.md for more detailed documentation.
 
 ## Build
 
 Octokit is a single assembly designed to be easy to deploy anywhere. If you 
 prefer to compile it yourself, you’ll need:
 
-* Visual Studio 2013, or Xamarin Studio
-* Windows 8 or higher to build and test the WinRT projects
+* Visual Studio 2015 or Xamarin Studio
+* Windows 8.1 or higher to build and test the WinRT projects
 
-To clone it locally click the "Clone in Windows" button above or run the 
+To clone it locally click the "Clone in Desktop" button above or run the 
 following git commands.
 
 ```
@@ -51,10 +62,6 @@ cd Octokit
 
 Visit the [Contributor Guidelines](https://github.com/octokit/octokit.net/blob/master/CONTRIBUTING.md) 
 for more details.
-
-## Build Server
-
-The builds and tests for Octokit.net are run on [AppVeyor](http://www.appveyor.com). This enables us to build and test incoming pull requests: https://ci.appveyor.com/project/Haacked15676/octokit-net
 
 ## Problems?
 
@@ -75,6 +82,9 @@ When creating an issue, clearly explain
 Also include any other information you think is relevant to reproduce the 
 problem.
 
+## Related Projects
+
+ - [ScriptCs.OctoKit](https://github.com/alfhenrik/ScriptCs.OctoKit) - a script pack to use Octokit in scriptcs 
 
 ## Copyright and License
 

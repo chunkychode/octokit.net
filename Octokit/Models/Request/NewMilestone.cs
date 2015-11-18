@@ -10,10 +10,14 @@ namespace Octokit
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class NewMilestone
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewMilestone"/> class.
+        /// </summary>
+        /// <param name="title">The title.</param>
         public NewMilestone(string title)
         {
             Ensure.ArgumentNotNull(title, "title");
-            
+
             Title = title;
             State = ItemState.Open;
         }

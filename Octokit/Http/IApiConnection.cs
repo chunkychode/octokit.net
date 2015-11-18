@@ -60,7 +60,7 @@ namespace Octokit
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
         Task<IReadOnlyList<T>> GetAll<T>(Uri uri);
-        
+
         /// <summary>
         /// Gets all API resources in the list at the specified URI.
         /// </summary>
@@ -109,7 +109,7 @@ namespace Octokit
         /// <param name="accepts">Accept header to use for the API request</param>
         /// <returns>The created API resource.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
-        Task<T> Post<T>(Uri uri, object data, string accepts); 
+        Task<T> Post<T>(Uri uri, object data, string accepts);
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI.
@@ -252,16 +252,16 @@ namespace Octokit
         Task<string> GetRedirect(Uri uri);
 
         /// <summary>
-        /// Executes a GET to the API object at the specified URI. This operation is appropriate for
-        /// API calls which queue long running calculations.
-        /// It expects the API to respond with an initial 202 Accepted, and queries again until a 
-        /// 200 OK is received.
+        /// Executes a GET to the API object at the specified URI. This operation is appropriate for API calls which 
+        /// queue long running calculations and return a collection of a resource.
+        /// It expects the API to respond with an initial 202 Accepted, and queries again until a 200 OK is received.
+        /// It returns an empty collection if it receives a 204 No Content response.
         /// </summary>
         /// <typeparam name="T">The API resource's type.</typeparam>
         /// <param name="uri">URI of the API resource to update</param>
         /// <param name="cancellationToken">A token used to cancel this potentially long running request</param>
         /// <returns>The updated API resource.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
-        Task<T> GetQueuedOperation<T>(Uri uri,CancellationToken cancellationToken);
+        Task<IReadOnlyList<T>> GetQueuedOperation<T>(Uri uri, CancellationToken cancellationToken);
     }
 }

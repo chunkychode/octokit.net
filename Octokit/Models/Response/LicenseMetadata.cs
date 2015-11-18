@@ -29,7 +29,7 @@ namespace Octokit
         /// The 
         /// </summary>
         public string Key { get; protected set; }
-        
+
         /// <summary>
         /// Friendly name of the license.
         /// </summary>

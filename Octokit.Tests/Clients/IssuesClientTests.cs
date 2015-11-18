@@ -33,7 +33,6 @@ namespace Octokit.Tests.Clients
                 await Assert.ThrowsAsync<ArgumentNullException>(() => client.Get(null, "name", 1));
                 await Assert.ThrowsAsync<ArgumentNullException>(() => client.Get("owner", null, 1));
             }
-
         }
 
         public class TheGetAllForCurrentMethod
@@ -237,6 +236,8 @@ namespace Octokit.Tests.Clients
 
             Assert.Equal(new Uri("https://api.github.com/repos/octokit-net-test/public-repo-20131022050247078/issues/1"), response.Body.Url);
             Assert.Equal(new Uri("https://github.com/octokit-net-test/public-repo-20131022050247078/issues/1"), response.Body.HtmlUrl);
+            Assert.Equal(new Uri("https://api.github.com/repos/octokit-net-test/public-repo-20131022050247078/issues/1/comments"), response.Body.CommentsUrl);
+            Assert.Equal(new Uri("https://api.github.com/repos/octokit-net-test/public-repo-20131022050247078/issues/1/events"), response.Body.EventsUrl);
         }
     }
 }

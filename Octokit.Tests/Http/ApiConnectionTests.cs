@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using NSubstitute;
 using Octokit.Internal;
-using Octokit.Tests.Helpers;
 using Xunit;
 
 namespace Octokit.Tests.Http
@@ -104,10 +103,10 @@ namespace Octokit.Tests.Http
             public async Task EnsuresArgumentNotNull()
             {
                 var client = new ApiConnection(Substitute.For<IConnection>());
-                
+
                 // One argument
                 await Assert.ThrowsAsync<ArgumentNullException>(() => client.GetAll<object>(null));
-                
+
                 // Two argument
                 await Assert.ThrowsAsync<ArgumentNullException>(async () =>
                     await client.GetAll<object>(null, new Dictionary<string, string>()));
@@ -316,22 +315,6 @@ namespace Octokit.Tests.Http
         public class TheGetQueuedOperationMethod
         {
             [Fact]
-            public async Task MakesGetRequest()
-            {
-                var queuedOperationUrl = new Uri("anything", UriKind.Relative);
-
-                const HttpStatusCode statusCode = HttpStatusCode.OK;
-                IApiResponse<object> response = new ApiResponse<object>(new Response(statusCode, null, new Dictionary<string, string>(), "application/json"), new object());
-                var connection = Substitute.For<IConnection>();
-                connection.GetResponse<object>(queuedOperationUrl,Args.CancellationToken).Returns(Task.FromResult(response));
-                var apiConnection = new ApiConnection(connection);
-
-                await apiConnection.GetQueuedOperation<object>(queuedOperationUrl,CancellationToken.None);
-
-                connection.Received().GetResponse<object>(queuedOperationUrl, Args.CancellationToken);
-            }
-
-            [Fact]
             public async Task WhenGetReturnsNotOkOrAcceptedApiExceptionIsThrown()
             {
                 var queuedOperationUrl = new Uri("anything", UriKind.Relative);
@@ -350,15 +333,36 @@ namespace Octokit.Tests.Http
             {
                 var queuedOperationUrl = new Uri("anything", UriKind.Relative);
 
-                var result = new object();
+                var result = new[] { new object() };
                 const HttpStatusCode statusCode = HttpStatusCode.OK;
-                IApiResponse<object> response = new ApiResponse<object>(new Response(statusCode, null, new Dictionary<string, string>(), "application/json"), result);
+                var httpResponse = new Response(statusCode, null, new Dictionary<string, string>(), "application/json");
+                IApiResponse<IReadOnlyList<object>> response = new ApiResponse<IReadOnlyList<object>>(httpResponse, result);
                 var connection = Substitute.For<IConnection>();
-                connection.GetResponse<object>(queuedOperationUrl, Args.CancellationToken).Returns(Task.FromResult(response));
+                connection.GetResponse<IReadOnlyList<object>>(queuedOperationUrl, Args.CancellationToken)
+                    .Returns(Task.FromResult(response));
                 var apiConnection = new ApiConnection(connection);
 
                 var actualResult = await apiConnection.GetQueuedOperation<object>(queuedOperationUrl, Args.CancellationToken);
-                Assert.Same(actualResult,result);
+                Assert.Same(actualResult, result);
+            }
+
+            [Fact]
+            public async Task WhenGetReturnsNoContentThenReturnsEmptyCollection()
+            {
+                var queuedOperationUrl = new Uri("anything", UriKind.Relative);
+
+                var result = new[] { new object() };
+                const HttpStatusCode statusCode = HttpStatusCode.NoContent;
+                var httpResponse = new Response(statusCode, null, new Dictionary<string, string>(), "application/json");
+                IApiResponse<IReadOnlyList<object>> response = new ApiResponse<IReadOnlyList<object>>(
+                    httpResponse, result);
+                var connection = Substitute.For<IConnection>();
+                connection.GetResponse<IReadOnlyList<object>>(queuedOperationUrl, Args.CancellationToken)
+                    .Returns(Task.FromResult(response));
+                var apiConnection = new ApiConnection(connection);
+
+                var actualResult = await apiConnection.GetQueuedOperation<object>(queuedOperationUrl, Args.CancellationToken);
+                Assert.Empty(actualResult);
             }
 
             [Fact]
@@ -366,30 +370,34 @@ namespace Octokit.Tests.Http
             {
                 var queuedOperationUrl = new Uri("anything", UriKind.Relative);
 
-                var result = new object();
-                IApiResponse<object> firstResponse = new ApiResponse<object>(new Response(HttpStatusCode.Accepted, null, new Dictionary<string, string>(), "application/json"), result);
-                IApiResponse<object> completedResponse = new ApiResponse<object>(new Response(HttpStatusCode.OK, null, new Dictionary<string, string>(), "application/json"), result);
+                var result = new[] { new object() };
+                IApiResponse<IReadOnlyList<object>> firstResponse = new ApiResponse<IReadOnlyList<object>>(
+                    new Response(HttpStatusCode.Accepted, null, new Dictionary<string, string>(), "application/json"), result);
+                IApiResponse<IReadOnlyList<object>> completedResponse = new ApiResponse<IReadOnlyList<object>>(
+                    new Response(HttpStatusCode.OK, null, new Dictionary<string, string>(), "application/json"), result);
                 var connection = Substitute.For<IConnection>();
-                connection.GetResponse<object>(queuedOperationUrl, Args.CancellationToken)
+                connection.GetResponse<IReadOnlyList<object>>(queuedOperationUrl, Args.CancellationToken)
                           .Returns(x => Task.FromResult(firstResponse),
-                          x => Task.FromResult(firstResponse), 
+                          x => Task.FromResult(firstResponse),
                           x => Task.FromResult(completedResponse));
 
                 var apiConnection = new ApiConnection(connection);
 
                 await apiConnection.GetQueuedOperation<object>(queuedOperationUrl, CancellationToken.None);
 
-                connection.Received(3).GetResponse<object>(queuedOperationUrl, Args.CancellationToken);
+                connection.Received(3).GetResponse<IReadOnlyList<object>>(queuedOperationUrl, Args.CancellationToken);
             }
 
             public async Task CanCancelQueuedOperation()
             {
                 var queuedOperationUrl = new Uri("anything", UriKind.Relative);
 
-                var result = new object();
-                IApiResponse<object> accepted = new ApiResponse<object>(new Response(HttpStatusCode.Accepted, null, new Dictionary<string, string>(), "application/json"), result);
+                var result = new[] { new object() };
+                IApiResponse<IReadOnlyList<object>> accepted = new ApiResponse<IReadOnlyList<object>>(
+                    new Response(HttpStatusCode.Accepted, null, new Dictionary<string, string>(), "application/json"), result);
                 var connection = Substitute.For<IConnection>();
-                connection.GetResponse<object>(queuedOperationUrl, Args.CancellationToken).Returns(x => Task.FromResult(accepted));
+                connection.GetResponse<IReadOnlyList<object>>(queuedOperationUrl, Args.CancellationToken)
+                    .Returns(x => Task.FromResult(accepted));
 
                 var apiConnection = new ApiConnection(connection);
 

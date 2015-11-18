@@ -74,9 +74,16 @@ packaging/
 tools/FAKE.Core
 tools/SourceLink.Fake
 tools/xunit.runner.console
+tools/Octokit.CodeFormatter
 *.ncrunch*
 *.GhostDoc.xml
+
+# FAKE temporary files
+.fake/
 
 # New VS Test Runner creates arbitrary folders with PDBs
 *.pdb
 pingme.txt
+
+# it's 2015, no need to keep this around when migrating projects
+Backup/

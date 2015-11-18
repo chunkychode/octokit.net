@@ -41,7 +41,7 @@ namespace Octokit
             get
             {
                 return String.Format(CultureInfo.InvariantCulture,
-                    "Day: {0} Hour: {1} Commit Count:{2}", DayOfWeek,HourOfTheDay,CommitCount);
+                    "Day: {0} Hour: {1} Commit Count:{2}", DayOfWeek, HourOfTheDay, CommitCount);
             }
         }
     }

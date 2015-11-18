@@ -32,7 +32,7 @@ namespace Octokit
         /// Returns the <see cref="Uri"/> that returns all public repositories in
         /// response to a GET request.
         /// </summary>
-       /// <param name="since">The integer ID of the last Repository that you’ve seen.</param>
+        /// <param name="since">The integer ID of the last Repository that you’ve seen.</param>
         public static Uri AllPublicRepositories(long since)
         {
             return "/repositories?since={0}".FormatUri(since);
@@ -610,7 +610,7 @@ namespace Octokit
         {
             return "repos/{0}/{1}/hooks/{2}/pings".FormatUri(owner, repositoryName, hookId);
         }
-        
+
         /// <summary>
         /// Returns the <see cref="Uri"/> that lists the commit statuses for the specified reference.
         /// </summary>
@@ -870,7 +870,7 @@ namespace Octokit
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
         /// /// <param name="number">The pull request number</param>
-        public static Uri MergePullRequest(string owner, string name, int number) 
+        public static Uri MergePullRequest(string owner, string name, int number)
         {
             return "repos/{0}/{1}/pulls/{2}/merge".FormatUri(owner, name, number);
         }
@@ -881,7 +881,7 @@ namespace Octokit
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
         /// /// <param name="number">The pull request number</param>
-        public static Uri PullRequestCommits(string owner, string name, int number) 
+        public static Uri PullRequestCommits(string owner, string name, int number)
         {
             return "repos/{0}/{1}/pulls/{2}/commits".FormatUri(owner, name, number);
         }
@@ -1102,7 +1102,7 @@ namespace Octokit
             return blob.FormatUri(owner, name, reference);
         }
 
-         /// <summary>
+        /// <summary>
         /// Returns the <see cref="Uri"/> for the specified tree.
         /// </summary>
         /// <param name="owner">The owner of the repository</param>
@@ -1149,9 +1149,20 @@ namespace Octokit
         }
 
         /// <summary>
-        /// returns the <see cref="Uri"/> for teams
+        /// Returns the <see cref="Uri"/> to discover teams 
+        /// for the current user
         /// </summary>
-        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Uri UserTeams()
+        {
+            return "user/teams".FormatUri();
+        }
+
+        /// <summary>
+        /// Returns the <see cref="Uri"/> for teams
+        /// use for getting, updating, or deleting a <see cref="Team"/>.
+        /// </summary>
+        /// <param name="id">The id of the <see cref="Team"/>.</param>
         /// <returns></returns>
         public static Uri Teams(int id)
         {
@@ -1529,6 +1540,19 @@ namespace Octokit
         public static Uri RepositoryArchiveLink(string owner, string name, ArchiveFormat archiveFormat, string reference)
         {
             return "repos/{0}/{1}/{2}/{3}".FormatUri(owner, name, archiveFormat.ToParameter(), reference);
+        }
+
+        /// <summary>
+        /// Creates the relative <see cref="Uri"/> for getting the contents of the specified repository and path
+        /// </summary>
+        /// <param name="owner">The owner of the repository</param>
+        /// <param name="name">The name of the repository</param>
+        /// <param name="path">The path of the contents to get</param>
+        /// <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+        /// <returns>The <see cref="Uri"/> for getting the contents of the specified repository and path</returns>
+        public static Uri RepositoryContent(string owner, string name, string path, string reference)
+        {
+            return "repos/{0}/{1}/contents/{2}?ref={3}".FormatUri(owner, name, path, reference);
         }
     }
 }

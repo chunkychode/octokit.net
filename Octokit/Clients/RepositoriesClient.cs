@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 #if NET_45
 using System.Collections.Generic;
 #endif
-using System.Threading.Tasks;
-using System.Linq;
-using System.Collections.ObjectModel;
 
 namespace Octokit
 {
@@ -49,7 +48,7 @@ namespace Octokit
         public Task<Repository> Create(NewRepository newRepository)
         {
             Ensure.ArgumentNotNull(newRepository, "newRepository");
-            
+
             return Create(ApiUrls.Repositories(), null, newRepository);
         }
 
@@ -82,7 +81,7 @@ namespace Octokit
             catch (ApiValidationException e)
             {
                 string errorMessage = e.ApiError.FirstErrorMessageSafe();
-                
+
                 if (String.Equals(
                     "name already exists on this account",
                     errorMessage,
@@ -117,6 +116,12 @@ namespace Octokit
                 {
                     throw new PrivateRepositoryQuotaExceededException(e);
                 }
+
+                if (errorMessage != null && errorMessage.EndsWith("is an unknown gitignore template.", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidGitIgnoreTemplateException(e);
+                }
+
                 throw;
             }
         }

@@ -10,6 +10,7 @@
     <RootNamespace>Octokit</RootNamespace>
     <AssemblyName>Octokit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Release\Mono\Octokit.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -102,6 +105,7 @@
     <Compile Include="Models\Request\LabelUpdate.cs" />
     <Compile Include="Models\Request\MergePullRequest.cs" />
     <Compile Include="Models\Request\MilestoneUpdate.cs" />
+    <Compile Include="Models\Request\NewArbitraryMarkDown.cs" />
     <Compile Include="Models\Request\NewBlob.cs" />
     <Compile Include="Models\Request\NewCommit.cs" />
     <Compile Include="Models\Request\NewCommitStatus.cs" />
@@ -377,7 +381,6 @@
     <Compile Include="Models\Response\RepositoryContent.cs" />
     <Compile Include="Models\Response\RepositoryContentChangeSet.cs" />
     <Compile Include="Models\Response\CommitContent.cs" />
-    <Compile Include="Models\Response\SignatureResponse.cs" />
     <Compile Include="Helpers\PropertyOrField.cs" />
     <Compile Include="Helpers\ApiUrls.Authorizations.cs" />
     <Compile Include="Models\Response\ApplicationAuthorization.cs" />
@@ -393,6 +396,19 @@
     <Compile Include="Models\Response\PullRequestFile.cs" />
     <Compile Include="Models\Request\PublicRepositoryRequest.cs" />
     <Compile Include="Exceptions\TwoFactorAuthorizationException.cs" />
+    <Compile Include="Http\HttpMessageHandlerFactory.cs" />
+    <Compile Include="Models\Response\TeamMembership.cs" />
+    <Compile Include="Models\Response\ResourceRateLimit.cs" />
+    <Compile Include="Models\Response\MiscellaneousRateLimit.cs" />
+    <Compile Include="Exceptions\RepositoryFormatException.cs" />
+    <Compile Include="Http\RequestBody.cs" />
+    <Compile Include="Http\IApiInfoProvider.cs" />
+    <Compile Include="Models\Response\Meta.cs" />
+    <Compile Include="Models\Common\Committer.cs" />
+    <Compile Include="Exceptions\InvalidGitIgnoreTemplateException.cs" />
+    <Compile Include="Models\Request\NewRepositoryWebHook.cs" />
+    <Compile Include="Exceptions\RepositoryWebHookConfigException.cs" />
+    <Compile Include="Helpers\WebHookConfigComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

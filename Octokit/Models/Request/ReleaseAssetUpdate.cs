@@ -4,9 +4,16 @@ using System.Globalization;
 
 namespace Octokit
 {
+    /// <summary>
+    /// Used to update a release asset.
+    /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class ReleaseAssetUpdate
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReleaseAssetUpdate"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         public ReleaseAssetUpdate(string name)
         {
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
@@ -19,7 +26,7 @@ namespace Octokit
         /// This field is required.
         /// </summary>
         public string Name { get; private set; }
-        
+
         /// <summary>
         /// An alternate description of the asset.
         /// Used in place of the filename.

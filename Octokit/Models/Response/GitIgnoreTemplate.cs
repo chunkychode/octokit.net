@@ -33,6 +33,5 @@ namespace Octokit
                 return String.Format(CultureInfo.InvariantCulture, "GitIgnore: {0}", Name);
             }
         }
-
     }
 }

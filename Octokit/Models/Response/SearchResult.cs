@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-
 namespace Octokit.Internal
 {
 #if !NETFX_CORE

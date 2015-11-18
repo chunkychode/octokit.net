@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Octokit
 {
-    [DebuggerDisplay("{DebuggerDisplay,nq}")]
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]    
 #if !NETFX_CORE
     [System.Serializable]
 #endif
