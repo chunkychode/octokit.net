@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
@@ -32,6 +33,8 @@ namespace Octokit
         /// <param name="name">The name of the repository</param>
         /// <returns>A <see cref="IReadOnlyList{PullRequest}"/> of <see cref="PullRequest"/>s which are currently open</returns>
         Task<IReadOnlyList<PullRequest>> GetAllForRepository(string owner, string name);
+        Task<IReadOnlyList<PullRequest>> GetAllForRepositoryUntil(string owner, string name, Func<IReadOnlyCollection<PullRequest>, bool> until);
+
 
         /// <summary>
         /// Query pull requests for the repository based on criteria
@@ -44,6 +47,8 @@ namespace Octokit
         /// <param name="request">Used to filter and sort the list of pull requests returned</param>
         /// <returns>A <see cref="IReadOnlyList{PullRequest}"/> of <see cref="PullRequest"/>s which match the criteria</returns>
         Task<IReadOnlyList<PullRequest>> GetAllForRepository(string owner, string name, PullRequestRequest request);
+        Task<IReadOnlyList<PullRequest>> GetAllForRepositoryUntil(string owner, string name, PullRequestRequest request, Func<IReadOnlyCollection<PullRequest>, bool> until);
+
 
         /// <summary>
         /// Create a pull request for the specified repository.

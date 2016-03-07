@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Octokit
@@ -43,6 +44,13 @@ namespace Octokit
         {
             return GetAllForRepository(owner, name, new PullRequestRequest());
         }
+        public Task<IReadOnlyList<PullRequest>> GetAllForRepositoryUntil(string owner, string name, Func<IReadOnlyCollection<PullRequest>, bool> until)
+        {
+
+            return GetAllForRepositoryUntil(owner, name, new PullRequestRequest(), (x) => { return true; });
+
+
+        }
 
         /// <summary>
         /// Query pull requests for the repository based on criteria
@@ -56,13 +64,25 @@ namespace Octokit
         /// <returns>A <see cref="IReadOnlyList{PullRequest}"/> of <see cref="PullRequest"/>s which match the criteria</returns>
         public Task<IReadOnlyList<PullRequest>> GetAllForRepository(string owner, string name, PullRequestRequest request)
         {
+            //Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            //Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            //Ensure.ArgumentNotNull(request, "request");
+
+            //return ApiConnection.GetAll<PullRequest>(ApiUrls.PullRequests(owner, name),
+            //    request.ToParametersDictionary());
+            return GetAllForRepositoryUntil(owner, name, request, (x) => { return true; });
+
+        }
+        public Task<IReadOnlyList<PullRequest>> GetAllForRepositoryUntil(string owner, string name, PullRequestRequest request, Func<IReadOnlyCollection<PullRequest>, bool> until)
+        {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
             Ensure.ArgumentNotNull(request, "request");
 
-            return ApiConnection.GetAll<PullRequest>(ApiUrls.PullRequests(owner, name),
-                request.ToParametersDictionary());
+            return ApiConnection.GetAllUntil<PullRequest>(ApiUrls.PullRequests(owner, name),
+                request.ToParametersDictionary(), until);
         }
+
 
         /// <summary>
         /// Create a pull request for the specified repository.

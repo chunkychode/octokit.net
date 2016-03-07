@@ -60,6 +60,7 @@ namespace Octokit
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
         Task<IReadOnlyList<T>> GetAll<T>(Uri uri);
+        Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, Func<IReadOnlyCollection<T>, bool> until);
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI.
@@ -70,6 +71,7 @@ namespace Octokit
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
         Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters);
+        Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, Func<IReadOnlyCollection<T>, bool> until);
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI.
@@ -81,6 +83,7 @@ namespace Octokit
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
         Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts);
+        Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, string accepts, Func<IReadOnlyCollection<T>, bool> until);
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI.

@@ -103,6 +103,10 @@ namespace Octokit
         {
             return GetAll<T>(uri, null, null);
         }
+        public Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, Func<IReadOnlyCollection<T>, bool> until)
+        {
+            return GetAllUntil<T>(uri, null, null, until);
+        }
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI.
@@ -115,6 +119,10 @@ namespace Octokit
         public Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters)
         {
             return GetAll<T>(uri, parameters, null);
+        }
+        public Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, Func<IReadOnlyCollection<T>, bool> until)
+        {
+            return GetAllUntil<T>(uri, parameters, null, until);
         }
 
         /// <summary>
@@ -132,6 +140,13 @@ namespace Octokit
 
             return _pagination.GetAllPages(async () => await GetPage<T>(uri, parameters, accepts)
                                                                  .ConfigureAwait(false), uri);
+        }
+        public Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, string accepts, Func<IReadOnlyCollection<T>, bool> until)
+        {
+            Ensure.ArgumentNotNull(uri, "uri");
+
+            return _pagination.GetAllPagesUntil(async () => await GetPage<T>(uri, parameters, accepts)
+                                                                 .ConfigureAwait(false), uri, until);
         }
 
         /// <summary>

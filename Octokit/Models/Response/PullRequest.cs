@@ -187,5 +187,9 @@ namespace Octokit
         {
             get { return String.Format(CultureInfo.InvariantCulture, "Number: {0} State: {1}", Number, State); }
         }
+        public System.Collections.Generic.List<PullRequestFile> PRFiles { get; set; }
+        public System.Collections.Generic.List<IssueComment> PRReviewComment { get; set; }
+        public string dummy { get; set; }
+
     }
 }
