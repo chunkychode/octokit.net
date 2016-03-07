@@ -48,6 +48,20 @@ namespace Octokit
         /// </summary>
         /// <typeparam name="T">Type of the API resource to get.</typeparam>
         /// <param name="uri">URI of the API resource to get</param>
+        /// <returns>The API resource.</returns>
+        /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
+        public Task<T> Get<T>(Uri uri)
+        {
+            Ensure.ArgumentNotNull(uri, "uri");
+
+            return Get<T>(uri, null);
+        }
+
+        /// <summary>
+        /// Gets the API resource at the specified URI.
+        /// </summary>
+        /// <typeparam name="T">Type of the API resource to get.</typeparam>
+        /// <param name="uri">URI of the API resource to get</param>
         /// <param name="parameters">Parameters to add to the API request</param>
         /// <returns>The API resource.</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
@@ -160,6 +174,21 @@ namespace Octokit
             Ensure.ArgumentNotNull(uri, "uri");
 
             return Connection.Post(uri);
+        }
+
+        /// <summary>
+        /// Creates a new API resource in the list at the specified URI.
+        /// </summary>
+        /// <typeparam name="T">The API resource's type.</typeparam>
+        /// <param name="uri">URI of the API resource to get</param>
+        /// <returns>The created API resource.</returns>
+        /// <exception cref="ApiException">Thrown when an API error occurs.</exception>
+        public async Task<T> Post<T>(Uri uri)
+        {
+            Ensure.ArgumentNotNull(uri, "uri");
+
+            var response = await Connection.Post<T>(uri).ConfigureAwait(false);
+            return response.Body;
         }
 
         /// <summary>
@@ -423,6 +452,7 @@ namespace Octokit
         /// <param name="uri">URI of the API resource to get</param>
         /// <returns>The URL returned by the API in the Location header</returns>
         /// <exception cref="ApiException">Thrown when an API error occurs, or the API does not respond with a 302 Found</exception>
+        [Obsolete("Octokit's HTTP library now follows redirects by default - this API will be removed in a future release")]
         public async Task<string> GetRedirect(Uri uri)
         {
             Ensure.ArgumentNotNull(uri, "uri");

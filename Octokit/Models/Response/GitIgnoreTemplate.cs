@@ -30,7 +30,7 @@ namespace Octokit
         {
             get
             {
-                return String.Format(CultureInfo.InvariantCulture, "GitIgnore: {0}", Name);
+                return string.Format(CultureInfo.InvariantCulture, "GitIgnore: {0}", Name);
             }
         }
     }

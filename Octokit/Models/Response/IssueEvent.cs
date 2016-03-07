@@ -12,7 +12,7 @@ namespace Octokit
     {
         public IssueEvent() { }
 
-        public IssueEvent(int id, Uri url, User actor, User assignee, Label label, EventInfoState @event, string commitId, DateTimeOffset createdAt, Issue issue)
+        public IssueEvent(int id, Uri url, User actor, User assignee, Label label, EventInfoState @event, string commitId, DateTimeOffset createdAt, Issue issue, Uri commitUrl)
         {
             Id = id;
             Url = url;
@@ -23,6 +23,7 @@ namespace Octokit
             CommitId = commitId;
             CreatedAt = createdAt;
             Issue = issue;
+            CommitUrl = commitUrl;
         }
 
         /// <summary>
@@ -61,6 +62,11 @@ namespace Octokit
         public string CommitId { get; protected set; }
 
         /// <summary>
+        /// The commit URL of a commit that referenced this issue.
+        /// </summary>
+        public Uri CommitUrl { get; protected set; }
+
+        /// <summary>
         /// Date the event occurred for the issue/pull request.
         /// </summary>
         public DateTimeOffset CreatedAt { get; protected set; }
@@ -72,7 +78,7 @@ namespace Octokit
 
         internal string DebuggerDisplay
         {
-            get { return String.Format(CultureInfo.InvariantCulture, "Id: {0} CreatedAt: {1}", Id, CreatedAt); }
+            get { return string.Format(CultureInfo.InvariantCulture, "Id: {0} CreatedAt: {1}", Id, CreatedAt); }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Octokit
     public static class UriExtensions
     {
         /// <summary>
-        /// Merge a dictionary of valeus with an existing <see cref="Uri"/>
+        /// Merge a dictionary of values with an existing <see cref="Uri"/>
         /// </summary>
         /// <param name="uri">Original request Uri</param>
         /// <param name="parameters">Collection of key-value pairs</param>
@@ -55,7 +55,7 @@ namespace Octokit
 
             Func<string, string, string> mapValueFunc = (key, value) => key == "q" ? value : Uri.EscapeDataString(value);
 
-            string query = String.Join("&", p.Select(kvp => kvp.Key + "=" + mapValueFunc(kvp.Key, kvp.Value)));
+            string query = string.Join("&", p.Select(kvp => kvp.Key + "=" + mapValueFunc(kvp.Key, kvp.Value)));
             if (uri.IsAbsoluteUri)
             {
                 var uriBuilder = new UriBuilder(uri)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Octokit
@@ -129,13 +130,30 @@ namespace Octokit
         /// <param name="number">The pull request number</param>
         /// <param name="mergePullRequest">A <see cref="MergePullRequest"/> instance describing a pull request merge</param>
         /// <returns>An <see cref="PullRequestMerge"/> result which indicates the merge result</returns>
-        public Task<PullRequestMerge> Merge(string owner, string name, int number, MergePullRequest mergePullRequest)
+        public async Task<PullRequestMerge> Merge(string owner, string name, int number, MergePullRequest mergePullRequest)
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
             Ensure.ArgumentNotNullOrEmptyString(name, "name");
             Ensure.ArgumentNotNull(mergePullRequest, "mergePullRequest");
 
-            return ApiConnection.Put<PullRequestMerge>(ApiUrls.MergePullRequest(owner, name, number), mergePullRequest);
+            try
+            {
+                return await ApiConnection.Put<PullRequestMerge>(ApiUrls.MergePullRequest(owner, name, number), mergePullRequest);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.StatusCode == HttpStatusCode.MethodNotAllowed)
+                {
+                    throw new PullRequestNotMergeableException(ex.HttpResponse);
+                }
+
+                if (ex.StatusCode == HttpStatusCode.Conflict)
+                {
+                    throw new PullRequestMismatchException(ex.HttpResponse);
+                }
+
+                throw;
+            }
         }
 
         /// <summary>

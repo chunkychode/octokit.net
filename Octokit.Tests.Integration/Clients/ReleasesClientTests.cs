@@ -20,9 +20,31 @@ public class ReleasesClientTests
         public TheGetReleasesMethod()
         {
             var github = Helper.GetAuthenticatedClient();
-            _releaseClient = github.Release;
+            _releaseClient = github.Repository.Release;
 
             _context = github.CreateRepositoryContext("public-repo").Result;
+        }
+
+        [IntegrationTest]
+        public async Task ReturnsAuthor()
+        {
+            var release = await _releaseClient.Get("git-tfs", "git-tfs", 2276624);
+
+            Assert.NotNull(release);
+            Assert.NotNull(release.Author);
+            Assert.Equal("spraints", release.Author.Login);
+        }
+
+        [IntegrationTest]
+        public async Task ReturnsAssets()
+        {
+            var release = await _releaseClient.Get("git-tfs", "git-tfs", 2276624);
+
+            Assert.NotNull(release);
+            Assert.Equal(1, release.Assets.Count);
+            Assert.Equal("GitTfs-0.24.1.zip", release.Assets.First().Name);
+            Assert.Equal("https://api.github.com/repos/git-tfs/git-tfs/tarball/v0.24.1", release.TarballUrl);
+            Assert.Equal("https://api.github.com/repos/git-tfs/git-tfs/zipball/v0.24.1", release.ZipballUrl);
         }
 
         [IntegrationTest]
@@ -62,7 +84,7 @@ public class ReleasesClientTests
         public TheEditMethod()
         {
             _github = Helper.GetAuthenticatedClient();
-            _releaseClient = _github.Release;
+            _releaseClient = _github.Repository.Release;
 
             _context = _github.CreateRepositoryContext("public-repo").Result;
         }
@@ -121,7 +143,7 @@ public class ReleasesClientTests
         public TheUploadAssetMethod()
         {
             _github = Helper.GetAuthenticatedClient();
-            _releaseClient = _github.Release;
+            _releaseClient = _github.Repository.Release;
 
             _context = _github.CreateRepositoryContext("public-repo").Result;
         }
@@ -215,7 +237,7 @@ public class ReleasesClientTests
 
             var response = await _github.Connection.Get<object>(new Uri(asset.Url), new Dictionary<string, string>(), "application/octet-stream");
 
-            var textContent = String.Empty;
+            var textContent = string.Empty;
 
             using (var zipstream = new MemoryStream((byte[])response.Body))
             using (var archive = new ZipArchive(zipstream))
@@ -233,6 +255,38 @@ public class ReleasesClientTests
         public void Dispose()
         {
             _context.Dispose();
+        }
+    }
+
+    public class TheGetLatestReleaseMethod
+    {
+        private readonly IReleasesClient _releaseClient;
+        private readonly IGitHubClient _client;
+
+        public TheGetLatestReleaseMethod()
+        {
+            _client = Helper.GetAuthenticatedClient();
+            _releaseClient = _client.Repository.Release;
+        }
+
+        [IntegrationTest]
+        public async Task ReturnsLatestRelease()
+        {
+            var lastReleaseFromGetAll = (await _releaseClient.GetAll("octokit", "octokit.net")).OrderBy(r => r.CreatedAt).Last();
+            var lastRelease = await _releaseClient.GetLatest("octokit", "octokit.net");
+
+            Assert.Equal(lastReleaseFromGetAll.Id, lastRelease.Id);
+        }
+
+        [IntegrationTest]
+        public async Task NoReleaseOnRepo()
+        {
+            var repoName = Helper.MakeNameWithTimestamp("public-repo");
+            await _client.Repository.Create(new NewRepository(repoName));
+
+            await Assert.ThrowsAsync<NotFoundException>(() => _releaseClient.GetLatest(Helper.UserName, repoName));
+
+            await _client.Repository.Delete(Helper.UserName, repoName);
         }
     }
 }

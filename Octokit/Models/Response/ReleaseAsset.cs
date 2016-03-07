@@ -12,7 +12,7 @@ namespace Octokit
     {
         public ReleaseAsset() { }
 
-        public ReleaseAsset(string url, int id, string name, string label, string state, string contentType, int size, int downloadCount, DateTimeOffset createdAt, DateTimeOffset updatedAt, string browserDownloadUrl)
+        public ReleaseAsset(string url, int id, string name, string label, string state, string contentType, int size, int downloadCount, DateTimeOffset createdAt, DateTimeOffset updatedAt, string browserDownloadUrl, Author uploader)
         {
             Url = url;
             Id = id;
@@ -25,6 +25,7 @@ namespace Octokit
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
             BrowserDownloadUrl = browserDownloadUrl;
+            Uploader = uploader;
         }
 
         public string Url { get; protected set; }
@@ -49,9 +50,11 @@ namespace Octokit
 
         public string BrowserDownloadUrl { get; protected set; }
 
+        public Author Uploader { get; protected set; }
+
         internal string DebuggerDisplay
         {
-            get { return String.Format(CultureInfo.InvariantCulture, "Name: {0} CreatedAt: {1}", Name, CreatedAt); }
+            get { return string.Format(CultureInfo.InvariantCulture, "Name: {0} CreatedAt: {1}", Name, CreatedAt); }
         }
 
         public ReleaseAssetUpdate ToUpdate()

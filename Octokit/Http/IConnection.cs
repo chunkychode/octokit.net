@@ -44,6 +44,7 @@ namespace Octokit
         /// <param name="allowAutoRedirect">To follow redirect links automatically or not</param>
         /// <returns><seealso cref="IResponse"/> representing the received HTTP response</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Get")]
+        [Obsolete("allowAutoRedirect is no longer respected and will be deprecated in a future release")]
         Task<IApiResponse<T>> Get<T>(Uri uri, IDictionary<string, string> parameters, string accepts, bool allowAutoRedirect);
 
         /// <summary>
@@ -104,6 +105,15 @@ namespace Octokit
         /// <param name="uri">URI endpoint to send request to</param>
         /// <returns><seealso cref="IResponse"/> representing the received HTTP response</returns>
         Task<HttpStatusCode> Post(Uri uri);
+
+        /// <summary>
+        /// Performs an asynchronous HTTP POST request.
+        /// Attempts to map the response body to an object of type <typeparamref name="T"/>
+        /// </summary>
+        /// <typeparam name="T">The type to map the response to</typeparam>
+        /// <param name="uri">URI endpoint to send request to</param>
+        /// <returns><seealso cref="IResponse"/> representing the received HTTP response</returns>
+        Task<IApiResponse<T>> Post<T>(Uri uri);
 
         /// <summary>
         /// Performs an asynchronous HTTP POST request.

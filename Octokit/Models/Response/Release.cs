@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -13,7 +14,7 @@ namespace Octokit
     {
         public Release() { }
 
-        public Release(string url, string htmlUrl, string assetsUrl, string uploadUrl, int id, string tagName, string targetCommitish, string name, string body, bool draft, bool prerelease, DateTimeOffset createdAt, DateTimeOffset? publishedAt)
+        public Release(string url, string htmlUrl, string assetsUrl, string uploadUrl, int id, string tagName, string targetCommitish, string name, string body, bool draft, bool prerelease, DateTimeOffset createdAt, DateTimeOffset? publishedAt, Author author, string tarballUrl, string zipballUrl, IReadOnlyList<ReleaseAsset> assets)
         {
             Url = url;
             HtmlUrl = htmlUrl;
@@ -28,6 +29,10 @@ namespace Octokit
             Prerelease = prerelease;
             CreatedAt = createdAt;
             PublishedAt = publishedAt;
+            Author = author;
+            TarballUrl = tarballUrl;
+            ZipballUrl = zipballUrl;
+            Assets = assets;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#")]
@@ -62,9 +67,17 @@ namespace Octokit
 
         public DateTimeOffset? PublishedAt { get; protected set; }
 
+        public Author Author { get; protected set; }
+
+        public string TarballUrl { get; protected set; }
+
+        public string ZipballUrl { get; protected set; }
+
+        public IReadOnlyList<ReleaseAsset> Assets { get; protected set; }
+
         internal string DebuggerDisplay
         {
-            get { return String.Format(CultureInfo.InvariantCulture, "Name: {0} PublishedAt: {1}", Name, PublishedAt); }
+            get { return string.Format(CultureInfo.InvariantCulture, "Name: {0} PublishedAt: {1}", Name, PublishedAt); }
         }
 
         public ReleaseUpdate ToUpdate()

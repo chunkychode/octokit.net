@@ -127,7 +127,7 @@ namespace Octokit
             if (!baseAddress.IsAbsoluteUri)
             {
                 throw new ArgumentException(
-                    String.Format(CultureInfo.InvariantCulture, "The base address '{0}' must be an absolute URI",
+                    string.Format(CultureInfo.InvariantCulture, "The base address '{0}' must be an absolute URI",
                         baseAddress), "baseAddress");
             }
 
@@ -237,6 +237,13 @@ namespace Octokit
 
             var response = await SendData<object>(uri, HttpMethod.Post, null, null, null, CancellationToken.None);
             return response.HttpResponse.StatusCode;
+        }
+
+        public Task<IApiResponse<T>> Post<T>(Uri uri)
+        {
+            Ensure.ArgumentNotNull(uri, "uri");
+
+            return SendData<T>(uri, HttpMethod.Post, null, null, null, CancellationToken.None);
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri, object body, string accepts, string contentType)
@@ -359,12 +366,12 @@ namespace Octokit
 
         Task<IApiResponse<T>> SendDataInternal<T>(object body, string accepts, string contentType, CancellationToken cancellationToken, string twoFactorAuthenticationCode, Request request)
         {
-            if (!String.IsNullOrEmpty(accepts))
+            if (!string.IsNullOrEmpty(accepts))
             {
                 request.Headers["Accept"] = accepts;
             }
 
-            if (!String.IsNullOrEmpty(twoFactorAuthenticationCode))
+            if (!string.IsNullOrEmpty(twoFactorAuthenticationCode))
             {
                 request.Headers["X-GitHub-OTP"] = twoFactorAuthenticationCode;
             }
@@ -521,7 +528,7 @@ namespace Octokit
 
         async Task<IApiResponse<string>> GetHtml(IRequest request)
         {
-            request.Headers.Add("Accept", "application/vnd.github.html");
+            request.Headers.Add("Accept", AcceptHeaders.StableVersionHtml);
             var response = await RunRequest(request, CancellationToken.None);
             return new ApiResponse<string>(response, response.Body as string);
         }
@@ -596,7 +603,7 @@ namespace Octokit
             if (restResponse == null || restResponse.Headers == null || !restResponse.Headers.Any()) return TwoFactorType.None;
             var otpHeader = restResponse.Headers.FirstOrDefault(header =>
                 header.Key.Equals("X-GitHub-OTP", StringComparison.OrdinalIgnoreCase));
-            if (String.IsNullOrEmpty(otpHeader.Value)) return TwoFactorType.None;
+            if (string.IsNullOrEmpty(otpHeader.Value)) return TwoFactorType.None;
             var factorType = otpHeader.Value;
             var parts = factorType.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length > 0 && parts[0] == "required")

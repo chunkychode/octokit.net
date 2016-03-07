@@ -42,7 +42,7 @@ namespace Octokit
 
         internal string DebuggerDisplay
         {
-            get { return String.Format(CultureInfo.InvariantCulture, "Repository: {0} UpdatedAt: {1}", Repository, UpdatedAt); }
+            get { return string.Format(CultureInfo.InvariantCulture, "Repository: {0} UpdatedAt: {1}", Repository, UpdatedAt); }
         }
     }
 }

@@ -56,62 +56,24 @@ namespace Octokit.Tests.Clients
             }
         }
 
-        public class TheGetArchiveLinkMethod
-        {
-            [Fact]
-            public async Task ReturnsArchiveLinkWithDefaults()
-            {
-                var connection = Substitute.For<IApiConnection>();
-                connection.GetRedirect(Args.Uri).Returns(Task.FromResult("https://codeload.github.com/fake/repo/legacy.tar.gz/master"));
-                var contentsClient = new RepositoryContentsClient(connection);
-
-                var archiveLink = await contentsClient.GetArchiveLink("fake", "repo");
-
-                connection.Received().GetRedirect(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/tarball/"));
-                Assert.Equal("https://codeload.github.com/fake/repo/legacy.tar.gz/master", archiveLink);
-            }
-
-            [Fact]
-            public async Task ReturnsArchiveLinkAsZipball()
-            {
-                var connection = Substitute.For<IApiConnection>();
-                connection.GetRedirect(Args.Uri).Returns(Task.FromResult("https://codeload.github.com/fake/repo/legacy.tar.gz/master"));
-                var contentsClient = new RepositoryContentsClient(connection);
-
-                var archiveLink = await contentsClient.GetArchiveLink("fake", "repo", ArchiveFormat.Zipball);
-
-                connection.Received().GetRedirect(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/zipball/"));
-                Assert.Equal("https://codeload.github.com/fake/repo/legacy.tar.gz/master", archiveLink);
-            }
-
-            [Fact]
-            public async Task ReturnsArchiveLinkWithSpecifiedValues()
-            {
-                var connection = Substitute.For<IApiConnection>();
-                connection.GetRedirect(Args.Uri).Returns(Task.FromResult("https://codeload.github.com/fake/repo/legazy.zip/release"));
-                var contentsClient = new RepositoryContentsClient(connection);
-
-                var archiveLink = await contentsClient.GetArchiveLink("fake", "repo", ArchiveFormat.Zipball, "release");
-
-                connection.Received().GetRedirect(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/zipball/release"));
-                Assert.Equal("https://codeload.github.com/fake/repo/legazy.zip/release", archiveLink);
-            }
-
-            [Fact]
-            public async Task EnsuresArgumentsNotNull()
-            {
-                var connection = Substitute.For<IApiConnection>();
-                var contentsClient = new RepositoryContentsClient(connection);
-
-                await Assert.ThrowsAsync<ArgumentNullException>(() => contentsClient.GetArchiveLink(null, "name"));
-                await Assert.ThrowsAsync<ArgumentNullException>(() => contentsClient.GetArchiveLink("owner", null));
-                await Assert.ThrowsAsync<ArgumentException>(() => contentsClient.GetArchiveLink("", "name"));
-                await Assert.ThrowsAsync<ArgumentException>(() => contentsClient.GetArchiveLink("owner", ""));
-            }
-        }
-
         public class TheGetContentsMethod
         {
+            [Fact]
+            public async Task ReturnsContentsByRef()
+            {
+                List<RepositoryContent> result = new List<RepositoryContent>() { new RepositoryContent() { } };
+
+                var connection = Substitute.For<IApiConnection>();
+                connection.GetAll<RepositoryContent>(Args.Uri).Returns(Task.FromResult(result.AsReadOnly() as IReadOnlyList<RepositoryContent>));
+                var contentsClient = new RepositoryContentsClient(connection);
+
+                var contents = await contentsClient.GetAllContentsByRef("fake", "repo", "readme.md", "master");
+
+                connection.Received().GetAll<RepositoryContent>(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/contents/readme.md?ref=master"));
+                Assert.Equal(1, contents.Count);
+            }
+
+
             [Fact]
             public async Task ReturnsContents()
             {
@@ -121,10 +83,157 @@ namespace Octokit.Tests.Clients
                 connection.GetAll<RepositoryContent>(Args.Uri).Returns(Task.FromResult(result.AsReadOnly() as IReadOnlyList<RepositoryContent>));
                 var contentsClient = new RepositoryContentsClient(connection);
 
-                var contents = await contentsClient.GetAllContents("fake", "repo", "readme.md", "master");
+                var contents = await contentsClient.GetAllContents("fake", "repo", "readme.md");
 
-                connection.Received().GetAll<RepositoryContent>(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/contents/readme.md?ref=master"));
+                connection.Received().GetAll<RepositoryContent>(Arg.Is<Uri>(u => u.ToString() == "repos/fake/repo/contents/readme.md"));
                 Assert.Equal(1, contents.Count);
+            }
+        }
+
+        public class TheCreateFileMethod
+        {
+            [Fact]
+            public void RequestsCorrectUrl()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                string expectedUri = "repos/org/repo/contents/path/to/file";
+                client.CreateFile("org", "repo", "path/to/file", new CreateFileRequest("message", "myfilecontents", "mybranch"));
+                
+                connection.Received().Put<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+            }
+
+            [Fact]
+            public void PassesRequestObject()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                client.CreateFile("org", "repo", "path/to/file", new CreateFileRequest("message", "myfilecontents", "mybranch"));
+
+                connection.Received().Put<RepositoryContentChangeSet>(
+                    Arg.Any<Uri>(),
+                    Arg.Is<CreateFileRequest>(a =>
+                        a.Message == "message"
+                        && a.Content == "myfilecontents"
+                        && a.Branch == "mybranch"));
+            }
+
+            [Fact]
+            public async Task EnsuresNonNullArguments()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.CreateFile(null, "repo", "path/to/file", new CreateFileRequest("message", "myfilecontents", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.CreateFile("org", null, "path/to/file", new CreateFileRequest("message", "myfilecontents", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.CreateFile("org", "repo", null, new CreateFileRequest("message", "myfilecontents", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.CreateFile("org", "repo", "path/to/file", null));
+            }
+        }
+
+        public class TheDeleteFileMethod
+        {
+            [Fact]
+            public void RequestsCorrectUrl()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                string expectedUri = "repos/org/repo/contents/path/to/file";
+                client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
+
+                connection.Received().Delete(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+            }
+
+            [Fact]
+            public void PassesRequestObject()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                client.DeleteFile("org", "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch"));
+
+                connection.Received().Delete(
+                    Arg.Any<Uri>(),
+                    Arg.Is<DeleteFileRequest>(a =>
+                        a.Message == "message"
+                        && a.Sha == "1234abc"
+                        && a.Branch == "mybranch"));
+            }
+
+            [Fact]
+            public async Task EnsuresNonNullArguments()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.DeleteFile(null, "repo", "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.DeleteFile("org", null, "path/to/file", new DeleteFileRequest("message", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.DeleteFile("org", "repo", null, new DeleteFileRequest("message", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.DeleteFile("org", "repo", "path/to/file", null));
+            }
+        }
+
+        public class TheUpdateFileMethod
+        {
+            [Fact]
+            public void RequestsCorrectUrl()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                string expectedUri = "repos/org/repo/contents/path/to/file";
+                client.UpdateFile("org", "repo", "path/to/file", new UpdateFileRequest("message", "myfilecontents", "1234abc", "mybranch"));
+
+                connection.Received().Put<RepositoryContentChangeSet>(Arg.Is<Uri>(u => u.ToString() == expectedUri), Arg.Any<object>());
+            }
+
+            [Fact]
+            public void PassesRequestObject()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                client.UpdateFile("org", "repo", "path/to/file", new UpdateFileRequest("message", "myfilecontents", "1234abc", "mybranch"));
+
+                connection.Received().Put<RepositoryContentChangeSet>(
+                    Arg.Any<Uri>(),
+                    Arg.Is<UpdateFileRequest>(a =>
+                        a.Message == "message"
+                        && a.Content == "myfilecontents"
+                        && a.Sha == "1234abc"
+                        && a.Branch == "mybranch"));
+            }
+
+            [Fact]
+            public async Task EnsuresNonNullArguments()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.UpdateFile(null, "repo", "path/to/file", new UpdateFileRequest("message", "myfilecontents", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.UpdateFile("org", null, "path/to/file", new UpdateFileRequest("message", "myfilecontents", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.UpdateFile("org", "repo", null, new UpdateFileRequest("message", "myfilecontents", "1234abc", "mybranch")));
+                await Assert.ThrowsAsync<ArgumentNullException>(() => client.UpdateFile("org", "repo", "path/to/file", null));
+            }
+        }
+
+        public class TheGetArchiveMethod
+        {
+            [Fact]
+            public void EnsurePassingCorrectParameters()
+            {
+                var connection = Substitute.For<IApiConnection>();
+                var client = new RepositoryContentsClient(connection);
+
+                client.GetArchive("org", "repo", ArchiveFormat.Tarball, "dev");
+
+                const string expectedUri = "repos/org/repo/tarball/dev";
+                var expectedTimeSpan = TimeSpan.FromMinutes(60);
+
+                connection.Connection.Received().Get<byte[]>(Arg.Is<Uri>(uri => uri.ToString() == expectedUri), Arg.Is<TimeSpan>(span => span == expectedTimeSpan));
             }
         }
     }

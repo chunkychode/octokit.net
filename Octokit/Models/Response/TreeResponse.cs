@@ -46,7 +46,7 @@ namespace Octokit
         {
             get
             {
-                return String.Format(CultureInfo.InvariantCulture, "Sha: {0}", Sha);
+                return string.Format(CultureInfo.InvariantCulture, "Sha: {0}", Sha);
             }
         }
     }
