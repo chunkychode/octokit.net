@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net45": {
+      "wrappedProject": "../../Octokit/Octokit.csproj",
+      "bin": {
+        "assembly": "../../Octokit/obj/Debug/{configuration}/Octokit.dll",
+        "pdb": "../../Octokit/obj/Debug/{configuration}/Octokit.pdb"
+      },
+      "dependencies": {
+        "DocPlagiarizer": "0.1.2",
+        "SimpleJson": "0.38.0"
+      }
+    }
+  }
+}

@@ -74,5 +74,24 @@ namespace Octokit
             }
 
         }
+        public IEnumerable<IReadOnlyList<T>> Pages<T>(Func<Task<IReadOnlyPagedCollection<T>>> getFirstPage, Uri uri)
+        {
+            Ensure.ArgumentNotNull(getFirstPage, "getFirstPage");
+
+            var pg = getFirstPage().ConfigureAwait(false).GetAwaiter().GetResult();
+
+
+            if (pg != null)
+            {
+                yield return pg;
+
+                while (pg != null && (pg = pg.GetNextPage().ConfigureAwait(false).GetAwaiter().GetResult()) != null)
+                {
+                    yield return pg;
+                }
+            }
+            yield break;
+
+        }
     }
 }

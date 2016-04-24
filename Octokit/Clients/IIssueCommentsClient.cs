@@ -42,6 +42,7 @@ namespace Octokit
         /// <param name="number">The issue number</param>
         /// <returns></returns>
         Task<IReadOnlyList<IssueComment>> GetAllForIssue(string owner, string name, int number);
+        IEnumerable<IReadOnlyList<IssueComment>> Pages(string owner, string name, int number);
 
         /// <summary>
         /// Creates a new Issue Comment for a specified Issue.

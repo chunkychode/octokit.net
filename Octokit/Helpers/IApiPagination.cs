@@ -22,6 +22,6 @@ namespace Octokit
         /// <param name="uri">The original URI (used only for raising an exception)</param>
         Task<IReadOnlyList<T>> GetAllPages<T>(Func<Task<IReadOnlyPagedCollection<T>>> getFirstPage, Uri uri);
         Task<IReadOnlyList<T>> GetAllPagesUntil<T>(Func<Task<IReadOnlyPagedCollection<T>>> getFirstPage, Uri uri, Func<IReadOnlyCollection<T>, bool> until);
-
+        IEnumerable<IReadOnlyList<T>> Pages<T>(Func<Task<IReadOnlyPagedCollection<T>>> getFirstPage, Uri uri);
     }
 }

@@ -155,6 +155,13 @@ namespace Octokit
             return _pagination.GetAllPages(async () => await GetPage<T>(uri, parameters, accepts)
                                                                  .ConfigureAwait(false), uri);
         }
+        public IEnumerable<IReadOnlyList<T>> Pages<T>(Uri uri, IDictionary<string, string> parameters, string accepts)
+        {
+            Ensure.ArgumentNotNull(uri, "uri");
+
+            return _pagination.Pages(async () => await GetPage<T>(uri, parameters, accepts)
+                                                                 .ConfigureAwait(false), uri);
+        }
         public Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, string accepts, Func<IReadOnlyCollection<T>, bool> until)
         {
             Ensure.ArgumentNotNull(uri, "uri");

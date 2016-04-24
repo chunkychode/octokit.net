@@ -49,6 +49,7 @@ namespace Octokit
 
             return ApiConnection.GetAll<IssueComment>(ApiUrls.IssueComments(owner, name));
         }
+        
 
         /// <summary>
         /// Gets Issue Comments for a specified Issue.
@@ -65,7 +66,12 @@ namespace Octokit
 
             return ApiConnection.GetAll<IssueComment>(ApiUrls.IssueComments(owner, name, number));
         }
-
+        public IEnumerable<IReadOnlyList<IssueComment>> Pages(string owner, string name, int number)
+        {
+            Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            return ApiConnection.Pages<IssueComment>(ApiUrls.IssueComments(owner, name, number),null,null);
+        }
         /// <summary>
         /// Creates a new Issue Comment for a specified Issue.
         /// </summary>

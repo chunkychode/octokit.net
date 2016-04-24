@@ -62,7 +62,10 @@ namespace Octokit
         {
             return GetAll(owner, name, new CommitRequest());
         }
-
+        public IEnumerable<IReadOnlyList<GitHubCommit>> Pages(string owner, string name)
+        {
+            return Pages(owner, name, new CommitRequest());
+        }
         /// <summary>
         /// Gets all commits for a given repository
         /// </summary>
@@ -78,6 +81,15 @@ namespace Octokit
 
             return _apiConnection.GetAll<GitHubCommit>(ApiUrls.RepositoryCommits(owner, name),
                 request.ToParametersDictionary());
+        }
+        public IEnumerable<IReadOnlyList<GitHubCommit>> Pages(string owner, string name, CommitRequest request)
+        {
+            Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNull(request, "request");
+
+            return _apiConnection.Pages<GitHubCommit>(ApiUrls.RepositoryCommits(owner, name), request.ToParametersDictionary(), null);
+
         }
     }
 }

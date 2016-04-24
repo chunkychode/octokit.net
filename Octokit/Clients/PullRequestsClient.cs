@@ -52,7 +52,15 @@ namespace Octokit
 
 
         }
+        public IEnumerable<IReadOnlyList<PullRequest>> Pages(string owner, string name, PullRequestRequest request)
+        {
+            Ensure.ArgumentNotNullOrEmptyString(owner, "owner");
+            Ensure.ArgumentNotNullOrEmptyString(name, "name");
+            Ensure.ArgumentNotNull(request, "request");
 
+            return ApiConnection.Pages<PullRequest>(ApiUrls.PullRequests(owner, name),
+                request.ToParametersDictionary(),null);
+        }
         /// <summary>
         /// Query pull requests for the repository based on criteria
         /// </summary>

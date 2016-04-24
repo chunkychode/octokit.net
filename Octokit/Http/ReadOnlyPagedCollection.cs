@@ -26,9 +26,11 @@ namespace Octokit.Internal
         public async Task<IReadOnlyPagedCollection<T>> GetNextPage()
         {
             var nextPageUrl = _info.GetNextPageUrl();
-            if (nextPageUrl == null) return null;
+
+            if (nextPageUrl == null || _info.RateLimit.Remaining < 100) return null;
 
             var response = await _nextPageFunc(nextPageUrl).ConfigureAwait(false);
+
             return new ReadOnlyPagedCollection<T>(response, _nextPageFunc);
         }
         public RateLimit RateLimit { get { return _info.RateLimit; } }

@@ -41,7 +41,7 @@ namespace Octokit
         /// <param name="name">The name of the repository</param>
         /// <returns></returns>
         Task<IReadOnlyList<GitHubCommit>> GetAll(string owner, string name);
-
+        IEnumerable<IReadOnlyList<GitHubCommit>> Pages(string owner, string name);
         /// <summary>
         /// Gets all commits for a given repository
         /// </summary>
@@ -50,5 +50,6 @@ namespace Octokit
         /// <param name="request">Used to filter list of commits returned</param>
         /// <returns></returns>
         Task<IReadOnlyList<GitHubCommit>> GetAll(string owner, string name, CommitRequest request);
+        IEnumerable<IReadOnlyList<GitHubCommit>> Pages(string owner, string name, CommitRequest request);
     }
 }

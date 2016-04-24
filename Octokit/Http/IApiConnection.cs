@@ -95,6 +95,8 @@ namespace Octokit
         Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts);
         Task<IReadOnlyList<T>> GetAllUntil<T>(Uri uri, IDictionary<string, string> parameters, string accepts, Func<IReadOnlyCollection<T>, bool> until);
 
+        IEnumerable<IReadOnlyList<T>> Pages<T>(Uri uri, IDictionary<string, string> parameters, string accepts);
+
         /// <summary>
         /// Creates a new API resource in the list at the specified URI.
         /// </summary>

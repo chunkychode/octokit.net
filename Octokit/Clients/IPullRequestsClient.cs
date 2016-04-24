@@ -48,7 +48,7 @@ namespace Octokit
         /// <returns>A <see cref="IReadOnlyList{PullRequest}"/> of <see cref="PullRequest"/>s which match the criteria</returns>
         Task<IReadOnlyList<PullRequest>> GetAllForRepository(string owner, string name, PullRequestRequest request);
         Task<IReadOnlyList<PullRequest>> GetAllForRepositoryUntil(string owner, string name, PullRequestRequest request, Func<IReadOnlyCollection<PullRequest>, bool> until);
-
+        IEnumerable<IReadOnlyList<PullRequest>> Pages(string owner, string name, PullRequestRequest request);
 
         /// <summary>
         /// Create a pull request for the specified repository.
